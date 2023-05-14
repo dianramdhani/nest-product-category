@@ -1,0 +1,22 @@
+GET http://localhost:3000/api/categories
+
+###
+POST http://localhost:3000/api/categories
+Content-Type: application/json
+
+{
+    "name": "Pakaian",
+    "description": "Semua jenis yang berhubungan pakaian"
+}
+
+###
+PATCH  http://localhost:3000/api/categories/6460a1c7ede56945b3947864
+Content-Type: application/json
+
+{
+    "name": "Pakaian",
+    "description": "Semua jenis yang berhubungan pakaian BARU"
+}
+
+###
+DELETE   http://localhost:3000/api/categories/6460a1c7ede56945b3947864
