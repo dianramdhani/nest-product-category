@@ -1,73 +1,116 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# Nest Product Category
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Eksplorasi integrasi database dalam waktu 1 jam.
 
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Kasus
 
-## Installation
+Anda diminta untuk membuat sebuah aplikasi backend untuk sebuah toko online yang menjual produk-produk berbagai kategori. Aplikasi ini harus mampu melakukan operasi CRUD (Create, Read, Update, Delete) pada produk dan kategori, serta melakukan validasi inPATCH. Aplikasi backend harus dapat menerima request dari aplikasi frontend dalam format JSON dan menyimpan data ke dalam database.
 
-```bash
-$ npm install
+
+### Spesifikasi
+
+- Buatlah sebuah database MySQL dengan tabel "products" dan tabel "categories". Tabel "products" memiliki kolom "id", "name", "price", "category_id", "description", dan "created_at". Kolom "id" merupakan primary key, dan harus auto-increment. Tabel "categories" memiliki kolom "id" dan "name", dengan "id" sebagai primary key.
+
+- Buatlah sebuah API endpoint "/categories" yang dapat menerima request dengan method GET, POST, PATCH, dan DELETE. Hanya pengguna dengan role "admin" yang dapat melakukan operasi CRUD pada kategori. Response harus dalam format JSON.
+
+- Buatlah sebuah API endpoint "/products" yang dapat menerima request dengan method GET, POST, PATCH, dan DELETE. Hanya pengguna dengan role "admin" yang dapat melakukan operasi CRUD pada produk. Response harus dalam format JSON.
+
+- Buatlah validasi inPATCH pada API endpoint "/categories" dan "/products". Jika inPATCH tidak valid, API harus memberikan response dengan status code 400 dan body dalam format JSON yang berisi pesan error.
+
+- Buatlah pagination pada API endpoint "/products". Setiap request GET ke API endpoint "/products" harus menyertakan parameter "page" dan "limit", di mana "page" adalah nomor halaman dan "limit" adalah jumlah produk per halaman. Response harus berisi data produk pada halaman tersebut, serta informasi jumlah total produk dan jumlah halaman.
+
+
+## Spesifikasi API
+
+### API Endpoint "/categories"
+
+- **GET /categories** untuk mengambil semua kategori
+
+- **GET /categories/:id** untuk mengambil sebuah kategori berdasarkan ID
+
+- **POST /categories** untuk menambahkan sebuah kategori baru
+
+- **PATCH /categories/:id** untuk mengubah sebuah kategori berdasarkan ID
+
+- **DELETE /categories/:id** untuk menghapus sebuah kategori berdasarkan ID
+
+### API Endpoint "/products"
+
+- **GET /products** untuk mengambil semua produk dengan opsi pagination
+
+- **GET /products/:id** untuk mengambil sebuah produk berdasarkan ID
+
+- **POST /products** untuk menambahkan sebuah produk baru
+
+- **PATCH /products/:id** untuk mengubah sebuah produk berdasarkan ID
+
+- **DELETE /products/:id** untuk menghapus sebuah produk berdasarkan ID
+
+### Request Body Format (Payload)
+
+- Untuk POST dan PATCH /products
+
+```json
+{
+  "name": "nama_produk",
+  "description": "deskripsi_produk",
+  "price": 10000,
+  "category_id": "605f594c9bb6fb9f53b76c3d"
+}
 ```
 
-## Running the app
+- Untuk POST dan PATCH /category
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```json
+{
+  "name": "nama_kategori",
+  "description": "deskripsi_kategori",
+}
 ```
 
-## Test
+### Response Body Format
 
-```bash
-# unit tests
-$ npm run test
+- Response body untuk GET /categories:
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+```json
+[
+  {
+    "id": "605f594c9bb6fb9f53b76c3d",
+    "name": "nama_kategori",
+    "description": "deskripsi_kategori"
+  },
+  {
+    "id": "605f594c9bb6fb9f53b76c3e",
+    "name": "nama_kategori_2",
+    "description": "deskripsi_kategori_2"
+  }
+]
 ```
 
-## Support
+- Response body untuk GET /categories/:id:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```json
+{
+  "id": "605f594c9bb6fb9f53b76c3d",
+  "name": "nama_kategori",
+  "description": "deskripsi_kategori"
+}
+```
 
-## Stay in touch
+- Response body untuk GET /products/:id:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+```json
+{
+  "id": "605f594c9bb6fb9f53b76c3f",
+  "name": "nama_produk",
+  "description": "deskripsi_produk",
+  "price": 10000,
+  "category": {
+    "id": "605f594c9bb6fb9f53b76c3d",
+    "name": "nama_kategori",
+    "description": "deskripsi_kategori"
+  }
+}
+```
