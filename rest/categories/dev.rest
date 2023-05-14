@@ -1,6 +1,9 @@
 GET http://localhost:3000/api/categories
 
 ###
+GET http://localhost:3000/api/categories/6460a2e7126f6cf1cd7fde93
+
+###
 POST http://localhost:3000/api/categories
 Content-Type: application/json
 
@@ -19,4 +22,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE   http://localhost:3000/api/categories/6460a54084416fa4ba20960e
+DELETE   http://localhost:3000/api/categories/6460a2e7126f6cf1cd7fde93

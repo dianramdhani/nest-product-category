@@ -16,7 +16,10 @@ export class CategoriesService {
   }
 
   async findOne(id: string) {
-    return await this.dbService.category.findFirst({ where: { id } });
+    return await this.dbService.category.findFirst({
+      where: { id },
+      include: { products: true },
+    });
   }
 
   async update(id: string, updateCategoryDto: UpdateCategoryDto) {

@@ -1,0 +1,25 @@
+GET https://nest-product-category.herokuapp.com/api/categories
+
+###
+GET https://nest-product-category.herokuapp.com/api/categories/6460a55784416fa4ba20960f
+
+###
+POST https://nest-product-category.herokuapp.com/api/categories
+Content-Type: application/json
+
+{
+    "name": "Pakaian",
+    "description": "Semua jenis yang berhubungan pakaian"
+}
+
+###
+PATCH  https://nest-product-category.herokuapp.com/api/categories/6460a1c7ede56945b3947864
+Content-Type: application/json
+
+{
+    "name": "Pakaian",
+    "description": "Semua jenis yang berhubungan pakaian BARU"
+}
+
+###
+DELETE   https://nest-product-category.herokuapp.com/api/categories/6460a55784416fa4ba20960f
