@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotAcceptableException } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { PrismaService } from 'src/db/prisma.service';
@@ -30,6 +30,10 @@ export class CategoriesService {
   }
 
   async remove(id: string) {
-    return await this.dbService.category.delete({ where: { id } });
+    const { products } = await this.findOne(id);
+
+    if (products.length) throw new NotAcceptableException('Has products');
+
+    return this.dbService.category.delete({ where: { id } });
   }
 }

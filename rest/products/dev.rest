@@ -8,8 +8,8 @@ POST http://localhost:3000/api/products
 Content-Type: application/json
 
 {
-    "name": "Atasan",
-    "price": 2000,
+    "name": "Dress",
+    "price": 20.5,
     "description": "baju gambar batman",
     "categoryId": "6460a55784416fa4ba20960f"
 }
