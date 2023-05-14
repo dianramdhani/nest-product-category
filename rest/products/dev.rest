@@ -1,0 +1,26 @@
+GET http://localhost:3000/api/products
+
+###
+GET  http://localhost:3000/api/products/6460a60184416fa4ba209611
+
+###
+POST http://localhost:3000/api/products
+Content-Type: application/json
+
+{
+    "name": "Atasan",
+    "price": 2000,
+    "description": "baju gambar batman",
+    "categoryId": "6460a55784416fa4ba20960f"
+}
+
+###
+PATCH  http://localhost:3000/api/products/6460a60184416fa4ba209611
+Content-Type: application/json
+
+{
+    "name": "atasan keran"
+}
+
+###
+DELETE  http://localhost:3000/api/products/6460a57a84416fa4ba209610
